@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../dist/output.css';
+import './index.css';
 import PageLayout from './Pages/PageLayout';
 import Home from './Pages/Home';
 import { Routes, Route } from 'react-router-dom';
