@@ -13,9 +13,10 @@ const Home = () => {
     const { data: countryArray, isLoading } = useFetcher('all', '');
 
     useEffect(() => {
-        // setFilteredCountries(countryArray.filter(country => country.name.official.includes(searchVal)));
-        setFilteredCountries((region ? regionArray : countryArray).filter(country => country.name.official.toLowerCase().includes(searchVal)));
-    }, [searchVal, region]);
+        region
+        ? setFilteredCountries(regionArray.filter(country => country.name.official.toLowerCase().includes(searchVal)))
+        : setFilteredCountries(countryArray.filter(country => country.name.official.toLowerCase().includes(searchVal)));
+    }, [searchVal]);
 
     useEffect(() => {
         console.log(regionArray);
