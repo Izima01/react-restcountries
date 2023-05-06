@@ -237,7 +237,6 @@ aside {
 
     main {
         width: 94%;
-        margin: 130px auto 0;
     }
 
     main section {
@@ -292,11 +291,11 @@ aside {
 /* Details page styling */
 
 #details-container p {
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .back {
-    /* margin: 30px 5% 15px; */
     padding: 4px 25px;
     background-color: inherit;
     border: none;
@@ -309,11 +308,10 @@ aside {
 
 #details-page {
     margin: 20px auto 80px;
-    width: 90%;
+    width: 92%;
     display: flex;
-    column-gap: 5%;
+    column-gap: 4%;
     align-items: center;
-    /* overflow-y: scroll; */
 }
 
 #details-page .flag {
@@ -331,17 +329,21 @@ aside {
 }
 
 #details-page h1 {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 #details-page .details {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .details p {
     margin-bottom: 20px;
     font-weight: 600;
+    font-size: 16px;
 }
 
 .details p span {
@@ -352,7 +354,8 @@ aside {
     margin: 32px 0 20px;
     display: flex;
     align-items: center;
-    column-gap: 32px;
+    column-gap: 28px;
+    /* justify-content: space-between; */
 }
 
 .border-countries div {
@@ -362,7 +365,7 @@ aside {
     flex-wrap: wrap;
 }
 
-.border-countries button {
+.border-countries a {
     padding: 5px 20px;
     background-color: inherit;
     border: none;
@@ -370,6 +373,10 @@ aside {
     border-radius: 4px;
     cursor: pointer;
     color: var(--text-color);
+}
+
+.border-countries p {
+    width: fit-content;
 }
 
 @media (max-width: 1024px) {

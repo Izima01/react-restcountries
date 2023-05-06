@@ -9,20 +9,17 @@ const Home = () => {
     const [searchVal, setSearchVal] = useState("");
     const [filteredCountries, setFilteredCountries] = useState([]);
     
+    const { data: regionArray } = useFetcher('region', region);
     const { data: countryArray, isLoading } = useFetcher('all', '');
-    const { data: regionArray } = region && useFetcher('region', region);
 
     useEffect(() => {
-        setFilteredCountries(countryArray.filter(country => country.name.official.includes(searchVal)));
-    }, [searchVal]);
-
-    useEffect(() => {
-        setFilteredCountries([...countryArray]);
-    }, []);
+        // setFilteredCountries(countryArray.filter(country => country.name.official.includes(searchVal)));
+        setFilteredCountries((region ? regionArray : countryArray).filter(country => country.name.official.toLowerCase().includes(searchVal)));
+    }, [searchVal, region]);
 
     useEffect(() => {
         console.log(regionArray);
-    }, [regionArray]);
+    }, [region]);
 
     return (
         <>
@@ -34,7 +31,8 @@ const Home = () => {
                     placeholder="Search for a country..."
                     onChange={(e) => setSearchVal(e.target.value)}
                 />
-                <select name="region" id="region" value={region} onChange={(e) => setRegion(e.target.value.toLowerCase())}>
+                <select name="region" id="region" value={region} onChange={(e) => setRegion(e.target.value)}>
+                    <option value="all">All</option>
                     <option value="africa">Africa</option>
                     <option value="america">America</option>
                     <option value="asia">Asia</option>
@@ -51,7 +49,35 @@ const Home = () => {
                         <LoadingCard />
                     </>
                     )
-                : filteredCountries?.map(country => {
+                : searchVal ? filteredCountries?.map(country => {
+                    const { flags, name, population, region, capital, cca3 } = country;
+                    return (
+                        <CountryCard
+                            key={cca3}
+                            flag={flags.png}
+                            name={name.official}
+                            population={population}
+                            region={region}
+                            capital={typeof capital === "object" ? capital[0] : capital}
+                            cca3={cca3}
+                        />
+                    )
+                })
+                : regionArray.length > 0 ? regionArray?.map(country => {
+                    const { flags, name, population, region, capital, cca3 } = country;
+                    return (
+                        <CountryCard
+                            key={cca3}
+                            flag={flags.png}
+                            name={name.official}
+                            population={population}
+                            region={region}
+                            capital={typeof capital === "object" ? capital[0] : capital}
+                            cca3={cca3}
+                        />
+                    )
+                })
+                : countryArray?.map(country => {
                     const { flags, name, population, region, capital, cca3 } = country;
                     return (
                         <CountryCard
