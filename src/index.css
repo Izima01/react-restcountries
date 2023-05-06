@@ -290,6 +290,10 @@ aside {
 
 /* Details page styling */
 
+#details-container {
+    width: 100%;
+}
+
 #details-container p {
     font-size: 16px;
     font-weight: 600;
@@ -308,7 +312,6 @@ aside {
 
 #details-page {
     margin: 20px auto 80px;
-    width: 92%;
     display: flex;
     column-gap: 4%;
     align-items: center;
@@ -402,7 +405,7 @@ aside {
         flex-direction: column;
         row-gap: 80px;
         margin: 40px auto 40px;
-        width: 90%;
+        width: 100% !important;
     }
 
     #details-page .flag {
